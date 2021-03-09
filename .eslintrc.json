@@ -1,9 +1,12 @@
 {
-  "extends": ["prettier", "eslint", "node/recomended"],
+  "extends": ["airbnb", "prettier", "plugin:node/recommended"],
+  "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error",
-    "no-process-env": "off",
-    "no-console": "off",
-    "use-object-shorthand": "true"
+    "no-unused-var": "error",
+    "no-console": ["error", { "argsIgnorePattern": "req|res|next|val" }],
+    "prefer-destructoring": ["error", { "object": "true", "arrays": "false" }],
+    "object-shorthand": "off",
+    "no-process-exit": "off",
+    "func-names": "off"
   }
 }
