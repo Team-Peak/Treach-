@@ -7,6 +7,9 @@ const AppError = require('./utils/AppError');
 const userRouter = require('./routes/userRoute');
 
 //middelwares
+
+//accessing req.body
+app.use(express.json());
 //for http logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));

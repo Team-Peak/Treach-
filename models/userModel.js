@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const slugify = require('slugify');
+const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const userSchema = mongoose.Schema({
   name: {
@@ -19,12 +21,11 @@ const userSchema = mongoose.Schema({
   slug: String,
   password: {
     type: String,
-    required: [true, 'please input your password'],
-    min: [8, 'A password should have a minimum of characters'],
+    select: false,
+    minlength: [8, 'password requires minimum of 8 character'],
   },
   passwordConfirm: {
     type: String,
-    required: [true, 'please confirm your password'],
     validate: {
       validator: function (el) {
         return el === this.password; //password confirm should be equal to the user password
@@ -54,6 +55,28 @@ userSchema.pre('save', function (next) {
   next();
 });
 
+//encrypt password
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+
+  this.password = await bcrypt.hash(this.password, 12);
+
+  this.passwordConfirm = undefined;
+  next();
+});
+userSchema.methods.createResetPassword = async function () {
+  const resetToken = await crypto.randomBytes(6).toString('hex');
+  this.passwordResetToken = await crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  this.passwordResetExpires = new Date(Date.now() + 10 * 60 * 1000);
+
+  return resetToken;
+};
+userSchema.methods.correctPassword = async function (candidate, userpassword) {
+  return await bcrypt.compare(candidate, userpassword);
+};
 //create and export a model based on schema
 const User = mongoose.model('User', userSchema);
 
