@@ -358,3 +358,14 @@ section header ul li .transparent-btn {
   background-color: #eb4d4b;
 }
 
+.error-div {
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 560px) {
+  .error-div {
+    font-size: 16px;
+  }
+}
