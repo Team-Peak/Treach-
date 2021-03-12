@@ -8,8 +8,10 @@
 }
 
 section {
+  
+  
   width: 100%;
-  min-height: 3em;
+  min-height: 3.0em;
   position: fixed;
   top: 0px;
   display: flex;
@@ -49,8 +51,7 @@ section header ul {
   list-style: none;
 }
 
-section header ul li {
-}
+
 
 section header ul li a {
   padding: 10px;
@@ -90,7 +91,7 @@ section header ul li .transparent-btn {
 }
 
 .container {
-  margin-top: 15px;
+  margin-top:15px;
   width: 100%;
   position: relative;
   display: flex;
@@ -205,20 +206,24 @@ section header ul li .transparent-btn {
   height: 300px;
   background-color: #fff;
   margin: 20px;
-  padding: 10px;
+  padding: 10px ;
 }
 
-.bg-full {
+
+
+.bg-full
+{
   flex-direction: column;
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height:100vh ;
   background-color: #087af2;
   justify-content: center;
   align-items: center;
 }
 
-.login-card {
+.login-card
+{
   display: flex;
   border-radius: 10px;
   width: 280px;
@@ -230,50 +235,66 @@ section header ul li .transparent-btn {
   flex-wrap: wrap;
 }
 
-.login-card span {
+.login-card span
+{
   color: #087af2;
   font-weight: 600;
 }
 
-.form-group {
+
+
+.form-group
+{
   margin-top: 20px;
   display: flex;
   width: 260px;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  
 }
 
-.form-group input {
+.form-group input
+
+{
   border-radius: 3px;
   width: 200px;
   height: 30px;
-  margin-top: 20px;
-  padding-left: 10px;
+  margin-top: 20px ;
+  padding-left: 10px ;
   color: #c5c5c5;
   border: 0.5px solid #c5c5c5;
+  
 }
 
-.form-group .checkbox {
-  width: 20px;
-  height: 20px;
+.form-group .checkbox
+{
+ width: 20px;
+ height: 20px;
 }
 
-.form-group span {
+.form-group span
+{
   margin-left: 30px;
   font-size: 10px;
-  margin-top: 22px;
+  margin-top: 22px ;
   color: #b5b5b5;
 }
+  
 
-.form-group .check {
+.form-group .check
+{
   display: flex;
   flex-direction: row;
   width: 200px;
-  align-items: center;
+  align-items: center
+  
 }
 
-.bg-full button {
+
+
+.bg-full button
+{
   border-radius: 3px;
   position: absolute;
   top: 20;
@@ -281,32 +302,39 @@ section header ul li .transparent-btn {
   padding: 10px 35px;
   font-size: 12px;
   font-weight: 600;
+  
 }
 
-.bg-full .col-right {
+.bg-full .col-right
+{
   background-color: #087af2;
   color: #fff;
   border: 1px inset #eeeeee;
 }
 
-.bg-full .col-right a {
+.bg-full .col-right a
+{
   color: #fff;
   text-decoration: none;
 }
 
-.bg-full .btn-box {
+
+.bg-full .btn-box
+{
   width: 200px;
-  position: relative;
+  position:relative;
   top: 15px;
-  right: 0px;
+  right:0px;
   background-color: #087af2;
   color: #fff;
   font-size: 12px;
   font-weight: 600;
   border: 1px inset #087af2;
+  
 }
 
-.login-card-l {
+.login-card-l
+{
   display: flex;
   border-radius: 10px;
   width: 280px;
@@ -318,43 +346,22 @@ section header ul li .transparent-btn {
   flex-wrap: wrap;
 }
 
-.login-card-l span {
+.login-card-l span
+{
   color: #087af2;
   font-weight: 600;
 }
 
-.login-card-l .tc {
+.login-card-l .tc
+{
   margin-right: 20px;
   text-align: center;
   color: #c5c5c5;
 }
 
-.login-card-l a {
+.login-card-l a
+{
   text-decoration: none;
-  color: #087af2;
-}
-
-.alert {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  z-index: 9999;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 1rem 1rem;
-  -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
-}
-.alert--success {
-  background-color: #20bf6b;
-}
-.alert--error {
-  background-color: #eb4d4b;
+  color: #087af2
 }
 

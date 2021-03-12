@@ -6,8 +6,8 @@ const crypto = require('crypto');
 const sendEmail = require('../utils/email');
 
 const signToken = (id) => {
-  const token = jwt.sign({ id }, process.env.JWT_SECRET,{
-    expiresIn:process.env.JWT_EXPIRES
+  const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES,
   });
   return token;
 };
@@ -137,15 +137,84 @@ exports.protect = handleAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+
+  if (!token) {
+    return next(
+      new AppError(
+        'You are not logged in , Please login to access this service',
+        401
+      )
+    );
   }
   //verify token
-  if (!token || !(await jwt.verify(token, process.env.JWT_SECRET))) {
-    return next(new AppError('TOKEN IS INVALID OR EXPIRED .PLEASE LOGIN', 401));
-  }
+  const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+
   //check if user exists
+  const user = await User.findById(decoded.id);
+  if (!user) {
+    return next(
+      new AppError(
+        'The user belonging to this token does not longer exists',
+        401
+      )
+    );
+  }
+
   //check if password was changed
+  if (user.passwordChangedAfter()) {
+    return next(
+      new AppError('User recently changed password! Please login', 401)
+    );
+  }
+
+  //grant access
+  req.user = user;
+  res.locals.user = user;
   next();
 });
+
+exports.isLoggedin = async (req, res, next) => {
+  try {
+    //check for token
+
+    if (req.cookies.jwt) {
+      if (!req.cookies.jwt) {
+        return next();
+      }
+      //verify token
+      const decoded = await jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+
+      //check if user exists
+      const user = await User.findById(decoded.id);
+      if (!user) {
+        return next();
+      }
+
+      //check if password was changed
+      if (user.passwordChangedAfter()) {
+        return next();
+      }
+      //grant access
+      res.locals.user = user;
+      return next();
+    }
+
+    next();
+  } catch (err) {
+    return next();
+  }
+};
+
+exports.logOut = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
+};
 
 exports.getAllUsers = handleAsync(async (req, res, next) => {
   const users = await User.find();

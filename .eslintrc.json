@@ -2,9 +2,9 @@
   "extends": ["airbnb", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "rules": {
-    "no-unused-var": "error",
-    "no-console": ["error", { "argsIgnorePattern": "req|res|next|val" }],
-    "prefer-destructoring": ["error", { "object": "true", "arrays": "false" }],
+    "no-unused-vars": ["error",{"argsIgnorePattern":"req|res|next|val"}],
+    "no-console": "off",
+    "prefer-destructuring": ["error", { "object": "true", "arrays": "false" }],
     "object-shorthand": "off",
     "no-process-exit": "off",
     "func-names": "off"

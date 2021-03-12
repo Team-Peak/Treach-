@@ -1,0 +1,15 @@
+section
+    header
+        a.logo(href='#') Treach
+        ul
+            if user
+                li
+                    button.logout Log Out
+                li
+                    a.opaque-btn(href='/signup') #{user.name}
+            else
+                li
+                    a.transparent-btn(href='/login') Log in
+                li
+                    a.opaque-btn(href='/signup') Sign up
+        

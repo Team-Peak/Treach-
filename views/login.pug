@@ -1,0 +1,14 @@
+extends base
+
+block content
+  .bg-full
+    .login-card
+      span Treach
+      form#form.form-group
+        input(placeholder='E-mail' type='text' id='email')
+        input(placeholder='Password' type='password' id='password')
+        .check
+          input.checkbox(type='checkbox')
+          span Remember me
+        button.btn-box(type='submit') Log in
+

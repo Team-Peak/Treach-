@@ -74,6 +74,18 @@ userSchema.methods.createResetPassword = async function () {
 
   return resetToken;
 };
+
+//check if password was changed
+userSchema.methods.passwordChangedAfter = function (Jwttimestamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return Jwttimestamp < this.passwordChangedAt;
+  }
+  return false;
+};
 userSchema.methods.correctPassword = async function (candidate, userpassword) {
   return await bcrypt.compare(candidate, userpassword);
 };
