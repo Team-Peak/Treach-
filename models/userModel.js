@@ -5,17 +5,27 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
 const userSchema = mongoose.Schema({
-  name: {
+  fname: {
     type: String,
-    required: [true, 'Please input your name'],
+    required: [true, 'Please input your first name'],
+    min: [3, 'Minimum length of your name should be 3 '],
+    max: [10, 'Maximum length of your name should be 10'],
+  },
+  lname: {
+    type: String,
+    required: [true, 'Please input your  last name'],
     min: [3, 'Minimum length of your name should be 3 '],
     max: [10, 'Maximum length of your name should be 10'],
   },
   email: {
     type: String,
     required: [true, 'Please input your email'],
-    validate: [validator.isEmail, 'Please input correct email address'],
     unique: true,
+  },
+  role: {
+    type: String,
+    enum: ['teacher', 'admin'],
+    default: 'teacher',
   },
   image: String,
   slug: String,
@@ -50,10 +60,6 @@ const userSchema = mongoose.Schema({
 });
 
 //document middleware to create a name slug //works on save and create only
-userSchema.pre('save', function (next) {
-  this.slug = slugify(this.name, { lower: true });
-  next();
-});
 
 //encrypt password
 userSchema.pre('save', async function (next) {

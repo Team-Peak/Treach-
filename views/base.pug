@@ -7,7 +7,9 @@ html(lang='en')
         title #{title}
         // HTML
         // Custom Styles
-        link(rel='stylesheet' href='style.css')
+
+        link(rel='stylesheet' href='/style.css')
+        link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.2/css/all.css' integrity='sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu' crossorigin='anonymous')
 
         body
             include _header
@@ -17,4 +19,4 @@ html(lang='en')
 
             include _footer
 
-            script(src='/js/bundle.js')
+script(src='/js/bundle.js')
