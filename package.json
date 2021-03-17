@@ -21,6 +21,7 @@
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.2",
     "express-rate-limit": "^5.2.6",
     "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
@@ -28,7 +29,8 @@
     "morgan": "^1.10.0",
     "pug": "^3.0.2",
     "slugify": "^1.4.7",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "eslint": "^7.21.0",
