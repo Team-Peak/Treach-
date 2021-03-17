@@ -10,6 +10,7 @@ const path = require('path');
 const pug = require('pug');
 const cookieparser = require('cookie-parser');
 const rateLimiter = require('express-rate-limit')
+const helmet = require('helmet')
 
 //Global middelwares
 
@@ -23,8 +24,12 @@ const limiter = rateLimiter({
 
 app.use(limiter);
 
+//set security http headers
+
+app.use(helmet())
+
 //accessing req.body
-app.use(express.json());
+app.use(express.json({limit:'10kb'}));
 
 //cookie parser
 app.use(cookieparser());
