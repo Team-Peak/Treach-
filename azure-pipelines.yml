@@ -1,4 +1,10 @@
 # Node.js
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'Visual Studio Enterprise Subscription(774b746b-aa57-4e22-a69b-509bedaf17e3)'
+    KeyVaultName: 'treach'
+    SecretsFilter: 
+    RunAsPreJob: false
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
