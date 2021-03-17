@@ -89,7 +89,7 @@ export const forgot = async (email) => {
       showAlert('success', 'Token sent to your email');
     }
   } catch (err) {
-    console.log(err);
+    
     showAlert('error', err.response.data.message);
   }
 };

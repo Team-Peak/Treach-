@@ -9,8 +9,19 @@ const viewRouter = require('./routes/viewsRoute');
 const path = require('path');
 const pug = require('pug');
 const cookieparser = require('cookie-parser');
+const rateLimiter = require('express-rate-limit')
 
-//middelwares
+//Global middelwares
+
+//rate limiter
+
+const limiter = rateLimiter({
+  max: 2,
+  windowMs: 60 * 60 * 1000,
+  message:'Too many requests from this Ip ,Try again in an hour'
+});
+
+app.use(limiter);
 
 //accessing req.body
 app.use(express.json());
