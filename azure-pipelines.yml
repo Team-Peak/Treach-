@@ -19,7 +19,7 @@ steps:
   inputs:
     azureSubscription: 'Visual Studio Enterprise Subscription(774b746b-aa57-4e22-a69b-509bedaf17e3)'
     KeyVaultName: 'treach'
-    SecretsFilter: 'Client'
+    SecretsFilter: '*'
     RunAsPreJob: true
 - script: |
     npm install
