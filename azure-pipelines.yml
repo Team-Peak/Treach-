@@ -4,7 +4,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 variables:
-  - group: treach variable group
+  - group: treach-variable
+  
 trigger:
 - main
 
