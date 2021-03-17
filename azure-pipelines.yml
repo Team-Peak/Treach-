@@ -3,9 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-variables:
-  - group: treach-variable
-  
+
 trigger:
 - main
 
@@ -17,7 +15,12 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'Visual Studio Enterprise Subscription(774b746b-aa57-4e22-a69b-509bedaf17e3)'
+    KeyVaultName: 'treach'
+    SecretsFilter: 'Client'
+    RunAsPreJob: true
 - script: |
     npm install
     npm start
