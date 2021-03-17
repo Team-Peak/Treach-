@@ -13,6 +13,7 @@ const rateLimiter = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const hpp = require('hpp');
 
 //Global middelwares
 
@@ -27,16 +28,18 @@ const limiter = rateLimiter({
 app.use(limiter);
 
 //set security http headers
-
 app.use(helmet());
 
 //Data sanitizatiion from against NoSql query injection
 app.use(mongoSanitize());
 
 //Data sanitization from xss attack
-app.use(xss())
+app.use(xss());
 
-//accessing req.body
+//prevent parameter polution
+app.use(hpp());
+
+//ac)cessing req.body
 app.use(express.json({ limit: '10kb' }));
 
 //cookie parser
