@@ -15,6 +15,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const compression = require('compression');
+const cors = require('cors');
 //Global middelwares
 
 //rate limiter
@@ -29,6 +30,10 @@ const limiter = rateLimiter({
 app.use(compression());
 
 app.use(limiter);
+
+//implementing cors
+app.use(cors());
+app.options('*', cors());
 
 //set security http headers
 app.use(helmet());
