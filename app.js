@@ -14,7 +14,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
-
+const compression = require('compression');
 //Global middelwares
 
 //rate limiter
@@ -24,6 +24,9 @@ const limiter = rateLimiter({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this Ip ,Try again in an hour',
 });
+
+//compression
+app.use(compression());
 
 app.use(limiter);
 
