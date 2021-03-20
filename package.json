@@ -1,8 +1,22 @@
 {
   "name": "Treach",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "A web application that addresses issues affecting our education sector . It provides resources and a platform for teachers to skill up and share .",
   "main": "app.js",
+=======
+  "description": "A web based application to help teachers skill up and share resources ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "prod": "NODE_ENV=production nodemon server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+  },
+  "author": "Abubakar Ali",
+  "license": "MIT",
+>>>>>>> parent of 509bf95 (refractored package.json)
   "dependencies": {
     "alert": "^5.0.10",
     "axios": "^0.21.1",
