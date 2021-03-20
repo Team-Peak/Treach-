@@ -1,4 +1,5 @@
-// const app = require('./app');
+const app = require('./app');
+console.log('hello world')
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
