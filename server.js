@@ -1,4 +1,4 @@
-const app = require('express')();
+const app = require('./app')
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
