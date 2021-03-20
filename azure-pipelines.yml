@@ -6,6 +6,13 @@
     appType: 'webAppLinux'
     WebAppName: 'treach'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise Subscription (774b746b-aa57-4e22-a69b-509bedaf17e3)'
+    appType: 'webAppLinux'
+    WebAppName: 'treach'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'NODE|14-lts'
     StartupCommand: 'npm start'
 # Build a Node.js Express app and deploy it to Azure as a Linux web app.
