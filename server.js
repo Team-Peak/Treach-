@@ -1,5 +1,4 @@
-const app = require('./app');
-console.log('hello world')
+const app = require('express')();
 const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
@@ -11,8 +10,6 @@ const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
 });
-
-
 
 //handle unhandled rejection
 process.on('unhandledRejection', (err) => {
