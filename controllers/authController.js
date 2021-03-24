@@ -45,7 +45,9 @@ exports.signUp = handleAsync(async (req, res, next) => {
   });
 
   //send welcome email
-  const url = `${req.protocol}://${req.get('host')}/me`;
+  const url = `${req.protocol}://${req.get(
+    'host'
+  )}/me`;
   await new sendEmail(user, url).sendWelcome();
 
   //create a jwt
