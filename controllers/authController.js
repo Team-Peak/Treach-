@@ -33,6 +33,8 @@ const sendJWT = (user, statusCode, res) => {
   });
 };
 exports.signUp = handleAsync(async (req, res, next) => {
+  //send welcome email
+
   //add user to database
   const user = await User.create({
     email: req.body.email,
@@ -41,6 +43,11 @@ exports.signUp = handleAsync(async (req, res, next) => {
     fname: req.body.fname,
     lname: req.body.lname,
   });
+
+  //send welcome email
+  const url = `${req.get('host')}/${req.originalUrl}/me`;
+  await new sendEmail(user, url).sendWelcome();
+
   //create a jwt
   sendJWT(user, 200, res);
 });
@@ -49,14 +56,14 @@ exports.login = handleAsync(async (req, res, next) => {
   //get user based on email and password
   const { email, password } = req.body;
   if (!email || !password) {
-    return next(new AppError('Please input your email or password'));
+    return next(new AppError('Please input your email or password',400));
   }
 
   const user = await User.findOne({ email }).select('+password');
 
   //check if user exists and password is correct
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Incorrect email or password'));
+    return next(new AppError('Incorrect email or password',401));
   }
   //generate jwt
   sendJWT(user, 200, res);
@@ -66,12 +73,12 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
   //take email and check if user exists
   const { email } = req.body;
   if (!email) {
-    return next(new AppError('Please input email to reset password'));
+    return next(new AppError('Please input email to reset password',401));
   }
 
   const user = await User.findOne({ email });
   if (!user) {
-    return next(new AppError('Your email is not registered with our service'));
+    return next(new AppError('Your email is not registered with our service',401));
   }
   //create reset token
   const resetToken = await user.createResetPassword();
@@ -79,27 +86,27 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
   await user.save();
 
   //send reset token to email
+  try{
   const resetUrl = `${req.protocol}://${req.get(
     'host'
   )}/api/v1/users/resetpassword/${resetToken}`;
 
-  const message = `Forgot password . click here ${resetUrl}`;
-  const subject = 'Password Reset Token (Expires in 10 minutes)';
-
-  try {
-    await sendEmail({
-      email,
-      subject,
-      message,
-    });
+  await new sendEmail(user, resetUrl).sendPasswordReset();
 
     res.status(200).json({
       status: 'success',
       message: 'reset token sent to email',
     });
   } catch (err) {
+
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+    
     res.status(500).json({
+      status:'error',
       message: 'There was an error sending the reset token',
+      err
     });
   }
 });
@@ -107,7 +114,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
 exports.resetPassword = handleAsync(async (req, res, next) => {
   //check for password and password confirm
   if (!req.body.password || !req.body.passwordConfirm) {
-    return next(new AppError('Please input your new Password'));
+    return next(new AppError('Please input your new Password',400));
   }
   // 1) Get user based on the token
   const hashedToken = crypto
