@@ -45,7 +45,7 @@ exports.signUp = handleAsync(async (req, res, next) => {
   });
 
   //send welcome email
-  const url = `${req.get('host')}/${req.originalUrl}/me`;
+  const url = `${req.protocol}://${req.get('host')}/me`;
   await new sendEmail(user, url).sendWelcome();
 
   //create a jwt
@@ -61,8 +61,12 @@ exports.login = handleAsync(async (req, res, next) => {
 
   const user = await User.findOne({ email }).select('+password');
 
-  //check if user exists and password is correct
-  if (!user || !(await user.correctPassword(password, user.password))) {
+  //check if user exists 
+  if(!user){
+    return next(new AppError ('You have not registered with us . Please signup',401))
+  }
+  //and password is correct
+  if ( !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect email or password',401));
   }
   //generate jwt
@@ -102,7 +106,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
-    
+
     res.status(500).json({
       status:'error',
       message: 'There was an error sending the reset token',
