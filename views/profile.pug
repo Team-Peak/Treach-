@@ -1,0 +1,40 @@
+extends base
+
+block content
+    section.profile
+      .profile-main
+        a(href='/')
+          i.fa.fa-3x.fa-arrow-left(aria-hidden='true')
+        h1 Profile Info
+        .profile-hero
+          .profile-details
+            // -Card 1
+            .profile-add-img
+              img.img(src='' alt='')
+              p Abubakar Ali
+              span(style='color: #207AF2;') Primary School
+            // -Card 2
+            .profile-add-img
+              form#add-image.img-form
+                h2 Add Profile Picture
+                .file-area
+                  input#profile-img(type='file' name='img-profile'  style='text-align: center;')
+                  br
+                button(type='submit') Submit
+          .profile-info
+            // Card 3
+            .profile-add-img
+              form#updatePassword.profile-form
+                label(for='password') Password
+                input#password(type='password')
+                label(for='passwordConfirm') Password Confirm
+                input#passwordConfirm(type='password')
+                button(type='submit') updatePassword
+            // Card 4
+            .profile-add-img
+              form#update.profile-form Level Of Teaching
+                label(for='levelOfTeaching') Update level of Teaching
+                input#levelOfTeaching(type='text')
+                label(for='SubjectOfIntrest') Subject Of Intrests
+                input#SubjectOfIntrest(type='text')
+                button(type='submit') SubjectOfIntrest

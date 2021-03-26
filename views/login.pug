@@ -1,13 +1,18 @@
 extends base
 
 block content
-  .bg-full
-    .login-card
-      span Treach
-      form.form-group.login-data
-        input(placeholder='E-mail' type='text' id='email')
-        input(placeholder='Password' type='password' id='password')
-        .check
-          a(href='/forgotpassword').reset Forgot Password ?
-        button.btn-box(type='submit') Log in
+    // particles.js container
+    #particles-js
+      .bg-full       
+        .login-card
+          span Treach
+          form.form-group.login-data
+            input(placeholder='E-mail' type='text' id='email')
+            input(placeholder='Password' type='password' id='password')
+            .check
+              a(href='/forgotpassword').reset Forgot Password ?
+            button.btn-box(type='submit') Log in
 
+    // scripts
+    script(src='/js/particle.js')
+    

@@ -1,20 +1,20 @@
 extends base
 
-
 block content
-  .bg-full
+  // particles.js container
+  #particles-js
+    .bg-full
+      .login-card-l
+        span Treach
+        form.form-group.sign-form
+          input(placeholder='First name' type='text' id='fname')
+          input(placeholder='Last name' type='text' id='lname')
+          input(placeholder='E-mail' type='email' id='email')
+          input(placeholder='Password' type='password' id='password')
+          input(placeholder='Confirm your password' type='password' id='passwordConfirm')
 
-    .login-card-l
-      
-      form.form-group.sign-form
-        input(placeholder='First name' type='text' id='fname')
-        input(placeholder='Last name' type='text' id='lname')
-        input(placeholder='E-mail' type='email' id='email')
-        input(placeholder='Password' type='password' id='password')
-        input(placeholder='Confirm your password' type='password' id='passwordConfirm')
-
-        .check
-          input.checkbox(type='checkbox')
-          span.tc By clicking submit, you agree with our 
-            a(href='#') Terms & Conditions
-        button.btn-box(type='submit') Sign up
+          .check
+            input.checkbox(type='checkbox')
+            span.tc By clicking submit, you agree with our 
+              a(href='#') Terms & Conditions
+          button.btn-box(type='submit') Sign up

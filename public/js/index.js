@@ -1,13 +1,15 @@
 /* eslint disable */
 import '@babel/polyfill';
 
-import { login, logOut, signUp, forgot, reset } from './script';
+import { login, logOut, signUp, forgot, reset, updateSettings } from './script';
 
 const logOutBtn = document.querySelector('.logout');
 const SignUpData = document.querySelector('.sign-form');
 const forgotData = document.querySelector('.forgot');
 const loginData = document.querySelector('.login-data');
 const resetData = document.querySelector('.reset-data');
+const imgForm = document.getElementById('add-image');
+const animate = document.querySelector('.animate');
 
 //handles login
 if (loginData) {
@@ -60,3 +62,14 @@ if (resetData) {
     reset(password, passwordConfirm, resetToken);
   });
 }
+
+if (imgForm)
+  imgForm.addEventListener('submit', (e) => {
+    console.log('hello');
+    e.preventDefault();
+    const form = new FormData();
+    form.append('photo', document.getElementById('profile-img').files[0]);
+
+    updateSettings(form, 'data');
+  });
+

@@ -31,3 +31,11 @@ exports.getResetPasswordForm = (req, res) => {
     resetToken: req.params.resetToken,
   });
 };
+
+//handler factory
+exports.getMe = (req, res) => {
+  return res.status(200).render('profile', {
+    title: 'Update Profile Info',
+    user: req.user,
+  });
+};
