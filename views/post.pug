@@ -1,51 +1,18 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=Edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1')
-    script(src='https://code.iconify.design/1/1.0.7/iconify.min.js')
-    title Treach
-    // HTML
-    // Custom Styles
-    link(rel='stylesheet' href='style.css')
-  body
-    section
-      header
-        a.logo(href='#')
-          img(src='./assets/ico.png' alt='')
-        ul
-          li
-            a(href='#') Home
-          li
-            a(href='profile.html') Profile
-          li
-            a(href='./particles/user/login.html') Log out
+extends base
+
+block content
     .container-resource
-      .res-content
-        div
-          img.resource-img(src='./assets/teacher_1.jpg' alt='')
-          h1  Lorem ipsum dolor sit amet consectetur adipis.
-          h4
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea cumque blanditiis laborum totam iste ratione,
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat nemo quasi pariatur accusamus quis debitis
-            | suscipit laudantium molestias nulla quia officia voluptates consequatur exercitationem laboriosam nihil at,
-            | eveniet animi ducimus! neque tenetur tempore. Nesciunt ab quam, dolorem libero delectus iste enim earum quidem
-            | ut assumenda!
-            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis error ipsum dolorem quod laudantium cupiditate totam praesentium deserunt fugit, accusantium excepturi ipsa iusto, ducimus quis dolorum maxime aliquid nam repudiandae!
-            | Lorem ipsum dolor sit amet consectetur, adipisicing elit. At deserunt placeat odit recusandae ipsa excepturi facere, eos nam hic esse nemo deleniti, aperiam et vitae rerum. Unde excepturi maxime eligendi!Lorem
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, alias tempore officia saepe molestiae non voluptatum perferendis repudiandae deserunt repellendus ducimus sunt, officiis blanditiis ipsam. Excepturi saepe veritatis molestiae explicabo?
-      footer
-        .footer-container
-          .sub-container
-            a(href='#') Forums
-            a(href='#') Resources
-            a(href='#') Become a volunteer
-          .sub-container
-            a(href='#') Faq
-            a(href='#') Career
-            a(href='#') About us
-          .sub-container-center
-            span.iconify(data-icon='carbon:chat-bot' data-inline='false' style='color: #ffffff;' data-width='30' data-height='30')
-            span Talk with Treach!
-  // end of header session
+        .res-content
+            div
+                img.resource-img(src='./assets/teacher_1.jpg' alt='')
+                h1  Lorem ipsum dolor sit amet consectetur adipis.
+                h4
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea cumque blanditiis laborum totam iste ratione,
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat nemo quasi pariatur accusamus quis debitis
+                    | suscipit laudantium molestias nulla quia officia voluptates consequatur exercitationem laboriosam nihil at,
+                    | eveniet animi ducimus! neque tenetur tempore. Nesciunt ab quam, dolorem libero delectus iste enim earum quidem
+                    | ut assumenda!
+                    | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis error ipsum dolorem quod laudantium cupiditate totam praesentium deserunt fugit, accusantium excepturi ipsa iusto, ducimus quis dolorum maxime aliquid nam repudiandae!
+                    | Lorem ipsum dolor sit amet consectetur, adipisicing elit. At deserunt placeat odit recusandae ipsa excepturi facere, eos nam hic esse nemo deleniti, aperiam et vitae rerum. Unde excepturi maxime eligendi!Lorem
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, alias tempore officia saepe molestiae non voluptatum perferendis repudiandae deserunt repellendus ducimus sunt, officiis blanditiis ipsam. Excepturi saepe veritatis molestiae explicabo?
+ 
