@@ -9,11 +9,12 @@ router.use(authController.isLoggedin);
 
 router.route('/').get(viewsController.getMainPage);
 router.route('/login').get(viewsController.getLoginForm);
+router.route('/signup').get(viewsController.getSignUpForm);
 router.get('/forgotpassword', viewsController.forgotPage);
-
+router.get('/forum',viewsController.forumPage)
 router.get('/api/v1/users/resetpassword/:resetToken', viewsController.getResetPasswordForm);
 
-router.get('/me',userController.getMe,viewsController.getMe)
-router.route('/signup').get(viewsController.getSignUpForm);
+router.get('/me',authController.protect,viewsController.getMe)
+
 
 module.exports = router;

@@ -10,6 +10,7 @@ router.route('/logout').get(authController.logOut);
 router.route('/forgotpassword').post(authController.forgotPassword);
 router.route('/resetpassword/:resetToken').patch(authController.resetPassword);
 
+router.use(authController.protect)
 router.patch(
   '/addphoto',
   userController.uploadUserPhoto,

@@ -107,6 +107,7 @@ section header ul li .transparent-btn {
   justify-content: space-between;
   align-items: center;
   background-color: rgb(250, 250, 250);
+  min-height: 100vh;
 }
 
 .image {
@@ -281,6 +282,7 @@ footer {
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
 }
 
 .footer-container {
@@ -547,9 +549,7 @@ footer {
      font: normal 75% Poppins, Helvetica, sans-serif;
    }
    
-   canvas {
-   }
-   
+
    /* ---- particles.js container ---- */
    
    #particles-js {
@@ -564,15 +564,28 @@ footer {
    
    
    .content-list-res {
-    min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
     flex-direction: row;
     margin: 20px;
     margin-top: 30px;
     width: 100%;
+  }
+
+  .hcontain
+  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap:wrap ;
+
+  }
+  
+  .fill
+  {
+    min-height: 100vh;
   }
    
   
@@ -655,15 +668,14 @@ footer {
   {
 
     padding: 10px;
-    width: 76%;
-    height: 230px;
+    width: 79%;
+    height: 280px;
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
     border: 1px solid rgb(231, 231, 231);
     justify-content: flex-start;
-    align-items: stretch
-;  
+    align-items: stretch;  
     margin: 5px ;
     margin-top: 100px;
   }
@@ -731,33 +743,36 @@ footer {
   }
 
   .res-content {
-    min-height: 20vh;
+    min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: row;
-    margin: 20px;
     margin-top: 30px;
     width: 100%;
+    
   }
 
   .res-content .resource-img{
-    height: 180px;
-    margin: 20px;
+    height: 200px;
+    margin: 20px 0px;
     width: 100%;
     object-fit: cover;
+    padding: 20px;
   }
 
   .res-content h1{
-    margin: 20px;
+    margin: 20px 0px;
+    color: #087af2;
+    text-align: center
   }
 
   .res-content h4{
     margin: 0px 20px;
     font-weight: 500;
+    line-height: 30px;
+    padding-bottom: 40px;
   }
-
-
 /** ALi optimazation*/
 
 .alert {
@@ -797,6 +812,12 @@ footer {
   .error-div {
     font-size: 16px;
   }
+}
+
+#profile-img{
+  height: 32px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
 /**/

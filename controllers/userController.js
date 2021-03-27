@@ -2,6 +2,7 @@ const multer = require('multer');
 const handleAsync = require('../utils/handleAsync');
 const AppError = require('../utils/AppError');
 const User = require('../models/userModel');
+const sharp = require('sharp');
 
 const multerStorage = multer.memoryStorage();
 
@@ -42,14 +43,9 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
-exports.getMe = (req, res, next) => {
-   
-    req.params.id = req.user.id;
-    next();
-  };
-
 exports.updateMe = handleAsync(async (req, res, next) => {
   // 1) Create error if user POSTs password data
+
   if (req.body.password || req.body.passwordConfirm) {
     return next(
       new AppError(
@@ -61,13 +57,15 @@ exports.updateMe = handleAsync(async (req, res, next) => {
 
   // 2) Filtered out unwanted fields names that are not allowed to be updated
   const filteredBody = filterObj(req.body, 'name', 'email');
-  if (req.file) filteredBody.photo = req.file.filename;
+  if (req.file) filteredBody.image = req.file.filename;
 
   // 3) Update user document
-  const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+  const updatedUser = await User.findByIdAndUpdate(req.user._id, filteredBody, {
     new: true,
     runValidators: true,
   });
+
+  
 
   res.status(200).json({
     status: 'success',
@@ -76,5 +74,3 @@ exports.updateMe = handleAsync(async (req, res, next) => {
     },
   });
 });
-
-

@@ -39,3 +39,11 @@ exports.getMe = (req, res) => {
     user: req.user,
   });
 };
+
+exports.forumPage = (req,res) =>{
+  return res.status(200).render('forum',{
+    title:'Forum Page'
+  })
+
+
+}

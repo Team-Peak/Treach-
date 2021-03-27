@@ -65,11 +65,11 @@ if (resetData) {
 
 if (imgForm)
   imgForm.addEventListener('submit', (e) => {
-    console.log('hello');
+    
     e.preventDefault();
     const form = new FormData();
     form.append('photo', document.getElementById('profile-img').files[0]);
 
-    updateSettings(form, 'data');
+    updateSettings(form,'data');
   });
 

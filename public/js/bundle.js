@@ -8747,7 +8747,7 @@ var reset = /*#__PURE__*/function () {
 exports.reset = reset;
 
 var updateSettings = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(data) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(data, type) {
     var res;
     return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
@@ -8757,7 +8757,7 @@ var updateSettings = /*#__PURE__*/function () {
             _context6.next = 3;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: '/api/v1/users/updateMe',
+              url: '/api/v1/users/addphoto',
               data: data
             });
 
@@ -8784,7 +8784,7 @@ var updateSettings = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function updateSettings(_x12) {
+  return function updateSettings(_x12, _x13) {
     return _ref6.apply(this, arguments);
   };
 }();
@@ -9114,7 +9114,6 @@ if (resetData) {
 }
 
 if (imgForm) imgForm.addEventListener('submit', function (e) {
-  console.log('hello');
   e.preventDefault();
   var form = new FormData();
   form.append('photo', document.getElementById('profile-img').files[0]);
@@ -9148,7 +9147,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53033" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61718" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,15 +1,30 @@
 section
     header
-        a.logo(href='/') Treach
+        a.logo(href='#')
+            img(src='./assets/ico.png' alt='')
         ul
             if user
                 li
                     button.logout Log Out
                 li
+                li
+                    img(src=`/img/users/${user.image}` alt="profile-img" id="profile-img")
+
+                li
+
+                li
                     a.opaque-btn(href='/signup') #{user.fname}
+
+                li
+
+
             else
                 li
                     a.transparent-btn(href='/login') Log in
                 li
                     a.opaque-btn(href='/signup') Sign up
-        
+
+
+    
+            
+
