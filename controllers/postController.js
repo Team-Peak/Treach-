@@ -3,7 +3,7 @@ const handleAsync = require('./../utils/handleAsync');
 const AppError = require('./../utils/AppError');
 const APIFeatures = require('./../utils/apifeatures');
 
-exports.getAllPosts = catchAsync(async (req, res, next) => {
+exports.getAllPosts = handleAsync(async (req, res, next) => {
   const features = new APIFeatures(Post.find(), req.query)
     .filter()
     .sort()
@@ -21,7 +21,7 @@ exports.getAllPosts = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getPost = catchAsync(async (req, res, next) => {
+exports.getPost = handleAsync(async (req, res, next) => {
   const post = await Post.findById(req.params.id);
   // Post.findOne({ _id: req.params.id })
 
@@ -37,7 +37,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createPost = catchAsync(async (req, res, next) => {
+exports.createPost = handleAsync(async (req, res, next) => {
   const newPost = await Post.create(req.body);
 
   res.status(201).json({
@@ -48,7 +48,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updatePost = catchAsync(async (req, res, next) => {
+exports.updatePost = handleAsync(async (req, res, next) => {
   const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -66,7 +66,14 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deletePost = catchAsync(async (req, res, next) => {
+exports.setPostUserIds = (req, res, next) => {
+  // Allow nested routes
+  if (!req.body.post) req.body.post = req.params.postId;
+  if (!req.body.user) req.body.user = req.user.id;
+  next();
+};
+
+exports.deletePost = handleAsync(async (req, res, next) => {
   const post = await Post.findByIdAndDelete(req.params.id);
 
   if (!post) {

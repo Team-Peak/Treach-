@@ -6,6 +6,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/AppError');
 const userRouter = require('./routes/userRoute');
 const viewRouter = require('./routes/viewsRoute');
+const postRouter = require('./routes/postRoute');
 const path = require('path');
 const pug = require('pug');
 const cookieparser = require('cookie-parser');
@@ -66,6 +67,7 @@ app.set('views', path.join(__dirname, 'views'));
 //routes
 app.use('/api/v1/users', userRouter);
 app.use('/', viewRouter);
+app.use('/api/v1/posts', postRouter);
 
 //handle undefined route
 app.all('*', (req, res, next) => {
