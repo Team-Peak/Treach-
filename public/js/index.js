@@ -68,7 +68,7 @@ if (imgForm)
     
     e.preventDefault();
     const form = new FormData();
-    form.append('photo', document.getElementById('profile-img').files[0]);
+    form.append('profile-img', document.getElementById('profile-img').files);
 
     updateSettings(form,'data');
   });
