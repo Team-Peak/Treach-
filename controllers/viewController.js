@@ -1,5 +1,7 @@
 const handleAsync = require('./../utils/handleAsync');
 const AppError = require('./../utils/AppError');
+const Post = require('./../models/postModel');
+const User = require('./../models/userModel');
 
 exports.getLoginForm = handleAsync(async (req, res, next) => {
   res.status(200).render('login', {
@@ -40,10 +42,34 @@ exports.getMe = (req, res) => {
   });
 };
 
-exports.forumPage = (req,res) =>{
-  return res.status(200).render('forum',{
-    title:'Forum Page'
-  })
+exports.forumPage = handleAsync(async (req, res) => {
+  const posts = await Post.find();
 
+  return res.status(200).render('forum', {
+    title: 'Forum Page',
+    posts,
+  });
+});
 
-}
+exports.getPost = handleAsync(async (req, res, next) => {
+  // 1) Get the data, for the requested tour (including reviews and guides)
+  const post = await Post.findOne({ slug: req.params.slug }).populate({
+    path: 'User',
+    fields: 'fname user',
+  });
+  
+  const paragraph = post.summary.split('\n')
+  
+
+  if (!post) {
+    return next(new AppError('There is no post with that name.', 404));
+  }
+
+  // 2) Build template
+  // 3) Render template using data from 1)
+  res.status(200).render('post', {
+    title: `${post.title} Tour`,
+    post,
+    paragraph
+  });
+});

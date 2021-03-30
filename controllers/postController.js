@@ -2,6 +2,51 @@ const Post = require('./../models/postModel');
 const handleAsync = require('./../utils/handleAsync');
 const AppError = require('./../utils/AppError');
 const APIFeatures = require('./../utils/apifeatures');
+const multer = require('multer');
+const sharp = require('sharp');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload only images.', 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadPostImages = upload.fields([{ name: 'images', maxCount: 3 }]);
+
+// upload.single('image') req.file
+// upload.array('images', 5) req.files
+
+exports.resizePostImages = handleAsync(async (req, res, next) => {
+  if (!req.files.images) return next();
+
+  // 2) Images
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, i) => {
+      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+
+      await sharp(file.buffer)
+        .resize(2000, 1333)
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 })
+        .toFile(`public/img/posts/${filename}`);
+
+      req.body.images.push(filename);
+    })
+  );
+
+  next();
+});
 
 exports.getAllPosts = handleAsync(async (req, res, next) => {
   const features = new APIFeatures(Post.find(), req.query)
@@ -24,6 +69,8 @@ exports.getAllPosts = handleAsync(async (req, res, next) => {
 exports.getPost = handleAsync(async (req, res, next) => {
   const post = await Post.findById(req.params.id);
   // Post.findOne({ _id: req.params.id })
+  const paragraphs = post.summary;
+  console.log(typeof paragraphs);
 
   if (!post) {
     return next(new AppError('No post found with that ID', 404));
@@ -33,6 +80,7 @@ exports.getPost = handleAsync(async (req, res, next) => {
     status: 'success',
     data: {
       post,
+      paragraph,
     },
   });
 });
@@ -68,8 +116,7 @@ exports.updatePost = handleAsync(async (req, res, next) => {
 
 exports.setPostUserIds = (req, res, next) => {
   // Allow nested routes
-  if (!req.body.post) req.body.post = req.params.postId;
-  if (!req.body.user) req.body.user = req.user.id;
+  if (!req.body.author) req.body.author = req.user.id;
   next();
 };
 

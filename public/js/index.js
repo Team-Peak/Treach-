@@ -1,7 +1,16 @@
 /* eslint disable */
 import '@babel/polyfill';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
-import { login, logOut, signUp, forgot, reset, updateSettings } from './script';
+import {
+  login,
+  logOut,
+  signUp,
+  forgot,
+  reset,
+  updateSettings,
+  createPost,
+} from './script';
 
 const logOutBtn = document.querySelector('.logout');
 const SignUpData = document.querySelector('.sign-form');
@@ -9,7 +18,8 @@ const forgotData = document.querySelector('.forgot');
 const loginData = document.querySelector('.login-data');
 const resetData = document.querySelector('.reset-data');
 const imgForm = document.getElementById('add-image');
-const animate = document.querySelector('.animate');
+const postForm = document.querySelector('#postForm');
+const post = document.querySelector('#post');
 
 //handles login
 if (loginData) {
@@ -65,11 +75,25 @@ if (resetData) {
 
 if (imgForm)
   imgForm.addEventListener('submit', (e) => {
-    
     e.preventDefault();
     const form = new FormData();
     form.append('profile-img', document.getElementById('profile-img').files);
 
-    updateSettings(form,'data');
+    updateSettings(form, 'data');
   });
 
+if (postForm) {
+  postForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+
+    const form = new FormData();
+
+    form.append('title', document.getElementById('title').value);
+    form.append('tag', document.getElementById('tag').value);
+    form.append('summary', document.getElementById('post').values);
+    form.append('images', document.getElementById('images').files[0]);
+
+    createPost(form);
+  });
+}

@@ -3,14 +3,19 @@ const router = express.Router();
 
 const postController = require('./../controllers/postController');
 const authController = require('./../controllers/authController');
+const userController = require('./../controllers/userController');
 
 router.use(authController.protect);
 
 router
   .route('/')
   .get(postController.getAllPosts)
-  .post(postController.setPostUserIds, postController.createPost);
-
+  .post(
+    postController.uploadPostImages,
+    postController.resizePostImages,
+    postController.setPostUserIds,
+    postController.createPost
+  );
 
 router
   .route('/:id')

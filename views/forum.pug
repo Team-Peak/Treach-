@@ -4,54 +4,24 @@ block content
     .fill.container-resource
         .hcontain
             .post-form
-                form(action='#')
-                    input.title(placeholder='Title' type='text')
-                    textarea.text(placeholder='Sharing an insight today?' type='textarea')
+                form#postForm(action='#')
+                    input.title#title(placeholder='Title' type='text')
+                    input.title#tag(placeholder='Tag' type='text' name='editor1')
+                    textarea#post.text(placeholder='Sharing an article today?' type='textarea' style='s')
                     div
-                        input.file(type='file')
+                        input.file#images(type='file')
                         button Post
             .content-list-res
-                .list-item-card
-                    img.card-image(src='./assets/preview2.jpg' alt='')
-                    a.h11(href='/post')
-                        .list-caption See how Philip explained the best practices as a teacher
-                        span.sub We are new here to make life easy for you even to the...
-                    .author Created by: 
-                        span John Adams
-                .list-item-card
-                    img.card-image(src='./assets/preview2.jpg' alt='')
-                    a.h11(href='/post')
-                        .list-caption See how Philip explained the best practices as a teacher
-                        span.sub We are new here to make life easy for you even to the...
-                    .author Created by: 
-                        span Steve Jobs
-                .list-item-card
-                    img.card-image(src='./assets/library.jpg' alt='')
-                    a.h11(href='/post')
-                        .list-caption See how Philip explained the best practices as a teacher
-                        span.sub We are new here to make life easy for you even to the...
-                    .author Created by: 
-                        span Alan Joe
-                .list-item-card
-                    img.card-image(src='./assets/library.jpg' alt='')
-                    a.h11(href='resource.html')
-                        .list-caption See how Philip explained the best practices as a teacher
-                        span.sub We are new here to make life easy for you even to the...
-                    .author Created by: 
-                        span Treach
-                .list-item-card
-                    img.card-image(src='./assets/library.jpg' alt='')
-                    a.h11(href='#')
-                        .list-caption See how Philip explained the best practices as a teacher
-                        span.sub We are new here to make life easy for you even to the...
-                    .author Created by: 
-                        span John Adams
-                .list-item-card
-                    img.card-image(src='./assets/preview2.jpg' alt='')
-                    a.h11(href='#')
-                        .list-caption See how Philip explained the best practices as a teacher
-                        span.sub We are new here to make life easy for you even to the...
-                    .author Created by: 
-                        span John Adams
+                each post in posts 
+                    .list-item-card
+                        img.card-image(src=`/img/posts/${post.images[0]}` alt='')
+                        a.h11(href=`/posts/${post.slug}`) 
+                            .list-caption #{post.title}
+                            span.sub #{post.summary.substr(0,20) + '...'} 
+                        .author Created by: 
+                            span !{post.author.fname}
         
+
+
+
 

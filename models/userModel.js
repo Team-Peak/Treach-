@@ -1,62 +1,64 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
-const userSchema = mongoose.Schema({
-  fname: {
-    type: String,
-    required: [true, 'Please input your first name'],
-    min: [3, 'Minimum length of your name should be 3 '],
-    max: [10, 'Maximum length of your name should be 10'],
-  },
-  lname: {
-    type: String,
-    required: [true, 'Please input your  last name'],
-    min: [3, 'Minimum length of your name should be 3 '],
-    max: [10, 'Maximum length of your name should be 10'],
-  },
-  email: {
-    type: String,
-    required: [true, 'Please input your email'],
-    unique: true,
-  },
-  role: {
-    type: String,
-    enum: ['teacher', 'admin'],
-    default: 'teacher',
-  },
-  image: String,
-  slug: String,
-  password: {
-    type: String,
-    select: false,
-    minlength: [8, 'password requires minimum of 8 character'],
-  },
-  passwordConfirm: {
-    type: String,
-    validate: {
-      validator: function (el) {
-        return el === this.password; //password confirm should be equal to the user password
-      },
-      message: 'The password does not match',
+const userSchema = mongoose.Schema(
+  {
+    fname: {
+      type: String,
+      required: [true, 'Please input your first name'],
+      min: [3, 'Minimum length of your name should be 3 '],
+      max: [10, 'Maximum length of your name should be 10'],
     },
-  },
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-  passwordChangedAt: Date,
-  premium: {
-    type: Boolean,
-    default: false,
-  },
-  levelOfTeaching: {
-    type: String,
-    enum: ['0 level', 'A level', ' Undagraduate level'],
-    default: '0 level',
-    required: [true, 'Please input your level of teaching'],
-  },
-  areaOfIntrest: [Array],
-});
+    lname: {
+      type: String,
+      required: [true, 'Please input your  last name'],
+      min: [3, 'Minimum length of your name should be 3 '],
+      max: [10, 'Maximum length of your name should be 10'],
+    },
+    email: {
+      type: String,
+      required: [true, 'Please input your email'],
+      unique: true,
+    },
+    role: {
+      type: String,
+      enum: ['teacher', 'admin'],
+      default: 'teacher',
+    },
+    image: String,
+    slug: String,
+    password: {
+      type: String,
+      select: false,
+      minlength: [8, 'password requires minimum of 8 character'],
+    },
+    passwordConfirm: {
+      type: String,
+      validate: {
+        validator: function (el) {
+          return el === this.password; //password confirm should be equal to the user password
+        },
+        message: 'The password does not match',
+      },
+    },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    passwordChangedAt: Date,
+    premium: {
+      type: Boolean,
+      default: false,
+    },
+    levelOfTeaching: {
+      type: String,
+      enum: ['0 level', 'A level', ' Undagraduate level'],
+      default: '0 level',
+      required: [true, 'Please input your level of teaching'],
+    },
+    areaOfIntrest: [Array],
+  }
+);
 
 //document middleware to create a name slug //works on save and create only
 

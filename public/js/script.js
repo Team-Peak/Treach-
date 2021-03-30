@@ -89,7 +89,6 @@ export const forgot = async (email) => {
       showAlert('success', 'Token sent to your email');
     }
   } catch (err) {
-    
     showAlert('error', err.response.data.message);
   }
 };
@@ -104,8 +103,6 @@ export const reset = async (password, passwordConfirm, resetToken) => {
         passwordConfirm,
       },
     });
-
-    
 
     if (res.data.status === 'success') {
       window.setTimeout(() => {
@@ -122,16 +119,32 @@ export const reset = async (password, passwordConfirm, resetToken) => {
 // type is either 'password' or 'data'
 export const updateSettings = async (data) => {
   try {
-    
-
     const res = await axios({
       method: 'PATCH',
-      url:'/api/v1/users/addphoto',
-      data
+      url: '/api/v1/users/addphoto',
+      data,
     });
 
     if (res.data.status === 'success') {
       showAlert('success', `${type.toUpperCase()} updated successfully!`);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
+
+export const createPost = async (data) => {
+  try {
+    
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/posts',
+      data,
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Post created successfully');
+      location.reload()
     }
   } catch (err) {
     showAlert('error', err.response.data.message);

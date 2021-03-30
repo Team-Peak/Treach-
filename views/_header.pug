@@ -1,16 +1,13 @@
 section
     header
         a.logo(href='#')
-            img(src='./assets/ico.png' alt='')
+            img(src='/assets/ico.png' alt='')
         ul
             if user
                 li
                     button.logout Log Out
                 li
-                li
-                    img(src=`/img/users/${user.image}` alt="profile-img" id="profile-img")
-
-                li
+               
 
                 li
                     a.opaque-btn(href='/signup') #{user.fname}

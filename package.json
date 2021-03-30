@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@ckeditor/ckeditor5-build-classic": "^27.0.0",
     "alert": "^5.0.10",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
@@ -34,6 +35,7 @@
     "multer": "^1.4.2",
     "pug": "^3.0.2",
     "sharp": "^0.27.2",
+    "sk": "0.0.8",
     "slugify": "^1.5.0",
     "validator": "^13.5.2",
     "xss-clean": "^0.1.1"
