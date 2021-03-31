@@ -150,3 +150,15 @@ export const createPost = async (data) => {
     showAlert('error', err.response.data.message);
   }
 };
+
+export const sendJobs = async(data)=>{
+  try{
+    const res = await axios({
+      method:'GET',
+      url:'/findjob',
+      data
+    })
+  }catch(err){
+    showAlert('error',err.response.data.message)
+  }
+}

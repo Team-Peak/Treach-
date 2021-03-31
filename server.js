@@ -1,8 +1,13 @@
 const app = require('./app')
 const mongoose = require('mongoose');
 
+
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
+
+//cron job to schedule web scrapping
+
+
 
 //start the server
 const PORT = process.env.PORT || 3000;
@@ -44,3 +49,6 @@ mongoose
   .then(() => {
     console.log('Database connected successfully ');
   });
+
+
+ 

@@ -17,6 +17,7 @@ router.get(
   viewsController.getResetPasswordForm
 );
 router.get('/posts/:slug', authController.isLoggedin, viewsController.getPost);
+router.get('/findjob', viewsController.getJob);
 
 router.get('/me', authController.protect, viewsController.getMe);
 

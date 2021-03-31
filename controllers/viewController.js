@@ -2,6 +2,7 @@ const handleAsync = require('./../utils/handleAsync');
 const AppError = require('./../utils/AppError');
 const Post = require('./../models/postModel');
 const User = require('./../models/userModel');
+const Job = require('../public/jobscraper.js')
 
 exports.getLoginForm = handleAsync(async (req, res, next) => {
   res.status(200).render('login', {
@@ -57,9 +58,8 @@ exports.getPost = handleAsync(async (req, res, next) => {
     path: 'User',
     fields: 'fname user',
   });
-  
-  const paragraph = post.summary.split('\n')
-  
+
+  const paragraph = post.summary.split('\n');
 
   if (!post) {
     return next(new AppError('There is no post with that name.', 404));
@@ -70,6 +70,13 @@ exports.getPost = handleAsync(async (req, res, next) => {
   res.status(200).render('post', {
     title: `${post.title} Tour`,
     post,
-    paragraph
+    paragraph,
   });
+});
+
+exports.getJob = handleAsync(async (req, res, next) => {
+  
+   return res.status(200).render('job',{
+     title:"Find a job",
+   })
 });
