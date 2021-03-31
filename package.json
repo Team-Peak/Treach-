@@ -30,6 +30,7 @@
     "hpp": "^0.2.3",
     "html-to-text": "^7.0.0",
     "jsonwebtoken": "^8.5.1",
+    "linkedin-jobs-scraper": "^6.0.4",
     "moment": "^2.29.1",
     "mongoose": "^5.12.1",
     "morgan": "^1.10.0",
