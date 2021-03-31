@@ -1,12 +1,22 @@
-extends base 
+extends base
 
 block content
-  // particles.js container
-  #particles-js
-    .bg-full
 
-      .reset-section
-        form.forgot
-          input#email(type='email' name='' placeholder='Enter your Email')
-          br
-          button.btn(href='') Reset password
+    .fill.container-resource
+        .content-list-res
+            each job in jobs   
+                .list-item-card
+                    .job-info
+                        .job-card-header
+                            h3=job.title
+                            p=job.location
+                        .job-sub-header
+                            button= moment(job.date).format("MMM Do YY")          
+                            button=job.company
+                            button=job.senorityLevel
+                        .job-description
+                            h3(style='margin: 10px; opacity: 0.7;') Description
+                            p(style='margin:10px')=job.functions
+                        .job-card-footer
+                            a(href=`${job.applyLink}` style='background-color: #2175f5; color: white;') Apply link
+                            button=job.employmentType

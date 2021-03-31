@@ -19,7 +19,6 @@ const compression = require('compression');
 const cors = require('cors');
 //Global middelwares
 
-//rate limiter
 
 const limiter = rateLimiter({
   max: 100,

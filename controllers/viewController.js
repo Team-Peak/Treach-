@@ -2,7 +2,9 @@ const handleAsync = require('./../utils/handleAsync');
 const AppError = require('./../utils/AppError');
 const Post = require('./../models/postModel');
 const User = require('./../models/userModel');
-const Job = require('../public/jobscraper.js')
+const Job = require('../models/jobsModel');
+const Apifeatures = require('../utils/apifeatures');
+const moment = require('moment');
 
 exports.getLoginForm = handleAsync(async (req, res, next) => {
   res.status(200).render('login', {
@@ -75,8 +77,18 @@ exports.getPost = handleAsync(async (req, res, next) => {
 });
 
 exports.getJob = handleAsync(async (req, res, next) => {
-  
-   return res.status(200).render('job',{
-     title:"Find a job",
-   })
+  req.query.limit = 20;
+  const features = new Apifeatures(Job.find(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+
+  const jobs = await features.query;
+
+  return res.status(200).render('job', {
+    title: 'Find a job',
+    jobs,
+    moment
+  });
 });

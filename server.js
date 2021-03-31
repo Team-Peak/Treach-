@@ -1,13 +1,22 @@
-const app = require('./app')
+const app = require('./app');
 const mongoose = require('mongoose');
-
+const Jobs = require('./models/jobsModel');
+const schedule = require('node-schedule');
+const scrapping = require('./public/jobscraper');
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
-//cron job to schedule web scrapping
 
-
+//reset job data
+schedule.scheduleJob('0 0 * * *', async () => {
+  try {
+    await Jobs.deleteMany();
+    console.log('Deleted successfully');
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //start the server
 const PORT = process.env.PORT || 3000;
@@ -49,6 +58,3 @@ mongoose
   .then(() => {
     console.log('Database connected successfully ');
   });
-
-
- 

@@ -11,6 +11,11 @@ const jobsSchema = new mongoose.Schema({
   Link: String,
   senorityLevel: String,
   functions: String,
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+    select: false,
+  },
   employmentType: String,
 });
 
