@@ -1,5 +1,5 @@
 const Jobs = require('./../models/jobsModel');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const schedule = require('node-schedule');
 const {
   LinkedinScraper,
@@ -13,16 +13,12 @@ const {
 //Database connection
 const DB = `mongodb+srv://abu:50761254@cluster0.ez9pw.mongodb.net/treach?retryWrites=true&w=majority`;
 
-mongoose
-  .connect(DB, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log('Database connected successfully ');
-  });
+mongoose.connect(DB, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 
 const scrapping = async () => {
   // Each scraper instance is associated with one browser.
@@ -82,12 +78,7 @@ const scrapping = async () => {
         {
           query: 'Teacher',
           options: {
-            locations: [
-              'Kenya',
-              'Nigeria',
-              'Africa',
-              'Tanzania',
-            ], // This will be merged with the global options => ["United States", "Europe"]
+            locations: ['Kenya', 'Nigeria', 'Africa', 'Tanzania'], // This will be merged with the global options => ["United States", "Europe"]
             filters: {
               type: [typeFilter.FULL_TIME, typeFilter.CONTRACT],
             },
@@ -113,8 +104,12 @@ const scrapping = async () => {
   await scraper.close();
 };
 
-//setup cron job to schedule webscrapping
+//setup cron job to schedule webscrapping every 30 minutes
+schedule.scheduleJob('30 * * * *', () => {
+  scrapping();
+});
 
-
-
-
+//reset job data
+schedule.scheduleJob('0 1 * * *', async () => {
+  await Jobs.deleteMany();
+});
