@@ -4,12 +4,21 @@ block content
   .container
     .top-layer
       .textbox
-        span.animate
+        span Learn , Grow , Re-imagine
         div
-          a.opaque-btn(href='/forum') Access Our Forum
+          a.opaque-btn(href='/forum') Articles
           a.transparent-btn(href='/findjob')
-            | Apply for Teachers Job
-      img.image(src='./assets/teacher_1.jpg')
+            | Find Teachers Job
+          .sub-textbox
+            | Do you desire to learn ?
+            | Learn from Africa's best teachers.
+            | Learning support to keep your education on course.
+            p Treach, to reach your goals.
+            | Treach, re-imagine what's possible as an educator.
+      .onboard-container
+        .circle
+        .circle-2 🌍
+        img.image(src='./assets/group.gif')
     .second-layer
       h4 Get more on Treach
       h6
@@ -29,7 +38,7 @@ block content
             p 2. Press 1 to select register
             p 3. Fill in your bio and start enjoying Treach
             | 🚀
-    .second-layer.white
+    .second-layer#second-layer-white
       h4 Features
       h6
         | Our features are carved with teachers in mind.
@@ -41,7 +50,7 @@ block content
             span.illustration-caption USSD
         .card
           div
-            img.illustration(src='./assets/asset3.png' alt='')
+            img.illustration(src='./assets/Notebook-pana.svg' alt='')
           .center
             span.illustration-caption Unlimited Resources
         .card
@@ -49,21 +58,4 @@ block content
             img.illustration(src='./assets/asset1.png' alt='')
           .center
             span.illustration-caption Jobs & Offers
-    
-  // Project
-  script(src='./assets/type/typed.js')
-  script.
-    var typed = new Typed('.animate', {
-    strings: [
-    "Do you desire to learn ?",
-    "Learn from Africa's best teachers",
-    "Learning support to keep your education on course",
-    "Treach, to reach your goals",
-    "Treach, re-imagine what's possible as an educator"
-    ],
-    typeSpeed: 100,
-    backSpeed: 100,
-    backDelay: 500,
-    startDelay: 1000,
-    loop: true,
-    });
+

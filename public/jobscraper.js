@@ -104,15 +104,4 @@ const scrapping = async () => {
   await scraper.close();
 };
 
-//cron job to schedule web scrapping
-//setup cron job to schedule webscrapping every 30 minutes
-schedule.scheduleJob('30 * * * *', async() => {
-  await scrapping()
-  
-});
-
-
-
-
-
-
+module.exports = scrapping;
