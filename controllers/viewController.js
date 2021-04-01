@@ -61,6 +61,7 @@ exports.getPost = handleAsync(async (req, res, next) => {
     fields: 'fname user',
   });
 
+  
   const paragraph = post.summary.split('\n');
 
   if (!post) {
@@ -71,8 +72,8 @@ exports.getPost = handleAsync(async (req, res, next) => {
   // 3) Render template using data from 1)
   res.status(200).render('post', {
     title: `${post.title} Tour`,
-    post,
     paragraph,
+    post
   });
 });
 

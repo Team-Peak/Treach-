@@ -87,6 +87,7 @@ exports.getPost = handleAsync(async (req, res, next) => {
 
 exports.createPost = handleAsync(async (req, res, next) => {
   const newPost = await Post.create(req.body);
+  
 
   res.status(201).json({
     status: 'success',

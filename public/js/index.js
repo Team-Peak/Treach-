@@ -91,7 +91,7 @@ if (postForm) {
 
     form.append('title', document.getElementById('title').value);
     form.append('tag', document.getElementById('tag').value);
-    form.append('summary', document.getElementById('post').values);
+    form.append('summary', document.getElementById('post').value);
     form.append('images', document.getElementById('images').files[0]);
 
     createPost(form);

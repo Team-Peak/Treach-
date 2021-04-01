@@ -1,6 +1,8 @@
 const Jobs = require('./../models/jobsModel');
 const mongoose = require('mongoose');
 const schedule = require('node-schedule');
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../config.env') })
 const {
   LinkedinScraper,
   relevanceFilter,
@@ -10,15 +12,20 @@ const {
   events,
 } = require('linkedin-jobs-scraper');
 
-//Database connection
-const DB = `mongodb+srv://abu:50761254@cluster0.ez9pw.mongodb.net/treach?retryWrites=true&w=majority`;
 
-mongoose.connect(DB, {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+
+
+//Database connection
+const DB = process.env.DB.replace('<password>', process.env.DB_PASS);
+
+mongoose
+  .connect(DB, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+ 
 
 const scrapping = async () => {
   // Each scraper instance is associated with one browser.
@@ -104,4 +111,4 @@ const scrapping = async () => {
   await scraper.close();
 };
 
-module.exports = scrapping;
+module.exports =  scrapping()

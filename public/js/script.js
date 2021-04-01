@@ -134,6 +134,7 @@ export const updateSettings = async (data) => {
 };
 
 export const createPost = async (data) => {
+  console.log(data)
   try {
     
     const res = await axios({

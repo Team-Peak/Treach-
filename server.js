@@ -10,6 +10,7 @@ dotenv.config({ path: './config.env' });
 //cron job to schedule web scrapping
 //setup cron job to schedule webscrapping every 30 minutes
 schedule.scheduleJob('30 * * * *', async() => {
+  
   await scrapping()
   
 });
