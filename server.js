@@ -7,12 +7,20 @@ const scrapping = require('./public/jobscraper');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
+//cron job to schedule web scrapping
+//setup cron job to schedule webscrapping every 30 minutes
+schedule.scheduleJob('30 * * * *', async() => {
+  await scrapping()
+  
+});
+
 
 //reset job data
 schedule.scheduleJob('0 0 * * *', async () => {
   try {
     await Jobs.deleteMany();
     console.log('Deleted successfully');
+    await scrapping()
   } catch (err) {
     console.log(err);
   }
