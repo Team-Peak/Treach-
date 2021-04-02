@@ -1,31 +1,18 @@
 const app = require('./app');
 const mongoose = require('mongoose');
 const Jobs = require('./models/jobsModel');
-const schedule = require('node-schedule');
-const scrapping = require('./public/jobscraper');
+const scrapping = require('./public/jobscraper')
+const schedule = require('node-schedule')
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
-//cron job to schedule web scrapping
-//setup cron job to schedule webscrapping every 30 minutes
-schedule.scheduleJob('30 * * * *', async() => {
+schedule.scheduleJob('30 * * * *',async()=>{
+ await scrapping()
   
-  await scrapping()
-  
-});
+})
 
 
-//reset job data
-schedule.scheduleJob('0 0 * * *', async () => {
-  try {
-    await Jobs.deleteMany();
-    console.log('Deleted successfully');
-    await scrapping()
-  } catch (err) {
-    console.log(err);
-  }
-});
 
 //start the server
 const PORT = process.env.PORT || 3000;
