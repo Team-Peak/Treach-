@@ -1,22 +1,20 @@
 extends base
 
 block content
-
-    .fill.container-resource
-        .content-list-res
-            each job in jobs   
-                .list-item-card
-                    .job-info
-                        .job-card-header
-                            h3=job.title
-                            p=job.location
-                        .job-sub-header
-                            button= moment(job.date).format("MMM Do YY")          
-                            button=job.company
-                            button=job.senorityLevel
-                        .job-description
-                            h3(style='margin: 10px; opacity: 0.7;') Description
-                            p(style='margin:10px')=job.functions
-                        .job-card-footer
-                            a(href=`${job.applyLink}` style='background-color: #2175f5; color: white;') Apply link
-                            button=job.employmentType
+    .container-career
+        .career-content
+            h1 Jobs & Career
+            .img-cap
+                img.career-img(src='./assets/Job.gif' alt='')
+                span
+                    | Join the teams of teachers.
+                    p Grow professionally from our loads of job directories
+            .jobs
+                each job in jobs
+                    .job-card
+                        span.title= job.title
+                        .time-loc
+                            span.role= job.employmentType
+                            span.location= job.place.split(',')[1]
+                        a.apply-btn(href=`${job.applyLink}`) Apply
+                

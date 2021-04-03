@@ -48,6 +48,9 @@ exports.getMe = (req, res) => {
 exports.forumPage = handleAsync(async (req, res) => {
   const posts = await Post.find();
 
+  
+  
+
   return res.status(200).render('forum', {
     title: 'Forum Page',
     posts,
@@ -63,6 +66,7 @@ exports.getPost = handleAsync(async (req, res, next) => {
 
   
   const paragraph = post.summary.split('\n');
+
 
   if (!post) {
     return next(new AppError('There is no post with that name.', 404));
@@ -85,7 +89,8 @@ exports.getJob = handleAsync(async (req, res, next) => {
     .limitFields()
     .paginate();
 
-  const jobs = await features.query;
+  const jobs = await features.query
+  
 
   return res.status(200).render('job', {
     title: 'Find a job',

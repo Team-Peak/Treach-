@@ -9,7 +9,10 @@ const postSchema = new mongoose.Schema(
       trim: true,
     },
     slug: String,
-    images: [String],
+    images: [{
+      type:String,
+      default:'default.jpg'
+    }],
     summary: {
       type: String,
       required: [true, 'A post requires a discription'],

@@ -14,13 +14,16 @@ block content
             .content-list-res
                 each post in posts 
                     .list-item-card
+
                         img.card-image(src=`/img/posts/${post.images[0]}` alt='')
+
+
                         a.h11(href=`/posts/${post.slug}`) 
                             .list-caption #{post.title}
                             span.sub #{post.summary.substr(0,20) + '...'} 
                         .author Created by: 
                             span !{post.author.fname}
-        
+
 
 
 

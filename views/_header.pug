@@ -1,6 +1,6 @@
 section
     header
-        a.logo(href='#')
+        a.logo(href='/')
             img(src='/assets/ico.png' alt='')
         ul
             if user
@@ -10,7 +10,7 @@ section
                
 
                 li
-                    a.opaque-btn(href='/signup') #{user.fname}
+                    a.opaque-btn#space(href='/signup') #{user.fname}
 
                 li
 

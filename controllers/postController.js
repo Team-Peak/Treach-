@@ -33,7 +33,7 @@ exports.resizePostImages = handleAsync(async (req, res, next) => {
 
   await Promise.all(
     req.files.images.map(async (file, i) => {
-      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+      const filename = `post-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
 
       await sharp(file.buffer)
         .resize(2000, 1333)
@@ -86,8 +86,11 @@ exports.getPost = handleAsync(async (req, res, next) => {
 });
 
 exports.createPost = handleAsync(async (req, res, next) => {
+  if (req.body.images === 'undefined') {
+     req.body.images = "default.jpg"
+  }
   const newPost = await Post.create(req.body);
-  
+  console.log(newPost);
 
   res.status(201).json({
     status: 'success',

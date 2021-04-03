@@ -17,8 +17,8 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const compression = require('compression');
 const cors = require('cors');
+const resourceRouter = require('./routes/resourcesRoute');
 //Global middelwares
-
 
 const limiter = rateLimiter({
   max: 1000,
@@ -66,6 +66,7 @@ app.set('views', path.join(__dirname, 'views'));
 //routes
 app.use('/api/v1/users', userRouter);
 app.use('/', viewRouter);
+app.use('/api/v1/resources', resourceRouter);
 app.use('/api/v1/posts', postRouter);
 
 //handle undefined route
