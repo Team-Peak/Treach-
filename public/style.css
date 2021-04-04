@@ -1121,6 +1121,15 @@ body {
   border-radius: 12px;
 }
 
+#contact-btn{
+  margin: 10px;
+  padding: 3px;
+  background-color: #207af2;
+  color: white;
+  border: none;
+  border-radius: 12px;
+}
+
 @media only screen and (max-width: 600px) {
   .profile {
     background-color: transparent;
@@ -1164,3 +1173,9 @@ body {
 }
 
 /*optimazation*/
+
+.loader{
+  position: fixed;
+  height: 100%;
+  background-color: #000000;
+}

@@ -15,6 +15,7 @@ html(lang='en')
         link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.2/css/all.css' integrity='sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu' crossorigin='anonymous')
 
         body
+            .loader
             include _header
 
             block content 
@@ -22,7 +23,10 @@ html(lang='en')
 
             include _footer
     // Project
- 
+script.
+  window.addEventListener('load', (event) => {
+  document.querySelector('.loader-bg').style.display= 'none';
+
 script(src='/js/bundle.js')
 
 

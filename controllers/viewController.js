@@ -98,3 +98,15 @@ exports.getJob = handleAsync(async (req, res, next) => {
     moment
   });
 });
+
+exports.getAbout = handleAsync(async(req,res,next)=>{
+  return res.status(200).render('about',{
+    title:'About Page'
+  })
+})
+
+exports.getContact = handleAsync(async(req,res,next)=>{
+  return res.status(200).render('contact',{
+    title:'Contact Page'
+  })
+})

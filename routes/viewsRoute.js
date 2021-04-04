@@ -18,6 +18,8 @@ router.get(
 );
 router.get('/posts/:slug', authController.isLoggedin, viewsController.getPost);
 router.get('/findjob', viewsController.getJob);
+router.get('/about',viewsController.getAbout)
+router.get('/contact',viewsController.getContact)
 
 router.get('/me', authController.protect, viewsController.getMe);
 

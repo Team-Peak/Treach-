@@ -1,0 +1,13 @@
+extends base
+
+block content
+    .container-resource
+        .profile
+            .login-card-l
+                span Contact Us
+                form.form-group(action='home.html')
+                    input(placeholder='E-mail' type='email')
+                    textarea#contact(placeholder='Type message here...' name='contact' rows='8' cols='40')
+                    a#contact-btn(href="mailto:abubakarali3w@gmail.com" value="Send") Send Feedback
+            .sd-profile
+                img(src='./assets/Contact us-bro.svg' alt='')
