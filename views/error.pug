@@ -1,38 +1,13 @@
-doctype html
-html
-  head
-    title  Error
-    style(type='text/css').
-      html {
-      font-size: 62.5%;
-      }
-      body {
-      background-color: #fff;
-      color: #000;
-      font-family: helvetica, arial, sans-serif;
-      font-size: 1.4em;
-      line-height: 1.5;
-      }
-      .centered {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      }
-      .emoji {
-      font-size: 9em;
-      text-align: center;
-      }
-      .title {
-      font-size: 3em;
-      text-align: center;
-      line-height: 0em;
-      color: grey;
-      }
-      .text {
-      text-align: center;
-      }
-  body.centered
-    .emoji 😭
-    p.title Ooooops! 
-    p.text Something went wrong
+extends base 
+
+block content
+  // particles.js container
+  #particles-js
+    .bg-full
+
+      .main-error
+        .error
+          .error-title
+            h1.error-heading oooh Something went wrong
+            p.error-emoji 😞
+            p.error-msg= msg
