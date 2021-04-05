@@ -45,9 +45,7 @@ exports.signUp = handleAsync(async (req, res, next) => {
   });
 
   //send welcome email
-  const url = `${req.protocol}://${req.get(
-    'host'
-  )}/forum`;
+  const url = `https://treach.azurewebsites.net/forum`;
   await new sendEmail(user, url).sendWelcome();
 
   //create a jwt
